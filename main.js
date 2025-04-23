@@ -1,4 +1,5 @@
-let randomEmailsArray = [];
+const emailList = document.getElementById("email-list");
+const randomEmailsArray = [];
 
 for (let i = 0; i < 10; i++) {
   axios
@@ -6,6 +7,12 @@ for (let i = 0; i < 10; i++) {
     .then((response) => {
       const randomEmail = response.data.response;
       randomEmailsArray.push(randomEmail);
+      let emailElement = ``;
+      for (let i = 0; i < randomEmailsArray.length; i++) {
+        const currentEmail = randomEmailsArray[i];
+        emailElement += `<li class="text-center">${currentEmail}</li>`;
+      }
+      emailList.innerHTML = emailElement;
     });
 }
 console.log(randomEmailsArray);
